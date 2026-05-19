@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="view_gestor_tarea_tree" model="ir.ui.view">
+        <field name="name">gestor.tarea.tree</field>
+        <field name="model">gestor.tarea</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="fecha_limite"/>
+                <field name="prioridad"/>
+                <field name="estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gestor_tarea_form" model="ir.ui.view">
+        <field name="name">gestor.tarea.form</field>
+        <field name="model">gestor.tarea</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="descripcion"/>
+                        <field name="fecha_limite"/>
+                        <field name="prioridad"/>
+                        <field name="estado"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gestor_tarea" model="ir.actions.act_window">
+        <field name="name">Tareas</field>
+        <field name="res_model">gestor.tarea</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_gestor_tareas_root"
+              name="Gestor de Tareas"/>
+
+    <menuitem id="menu_gestor_tareas"
+              name="Tareas"
+              parent="menu_gestor_tareas_root"
+              action="action_gestor_tarea"/>
+
+</odoo>
