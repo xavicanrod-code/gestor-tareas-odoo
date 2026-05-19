@@ -1,7 +1,8 @@
 <odoo>
 
-    <record id="view_gestor_tarea_tree" model="ir.ui.view">
-        <field name="name">gestor.tarea.tree</field>
+    <!-- VISTA LISTA -->
+    <record id="view_gestor_tarea_list" model="ir.ui.view">
+        <field name="name">gestor.tarea.list</field>
         <field name="model">gestor.tarea</field>
         <field name="arch" type="xml">
             <list>
@@ -13,6 +14,7 @@
         </field>
     </record>
 
+    <!-- VISTA FORMULARIO -->
     <record id="view_gestor_tarea_form" model="ir.ui.view">
         <field name="name">gestor.tarea.form</field>
         <field name="model">gestor.tarea</field>
@@ -31,15 +33,51 @@
         </field>
     </record>
 
+    <!-- VISTA KANBAN -->
+    <record id="view_gestor_tarea_kanban" model="ir.ui.view">
+        <field name="name">gestor.tarea.kanban</field>
+        <field name="model">gestor.tarea</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+
+                            <div>
+                                <field name="fecha_limite"/>
+                            </div>
+
+                            <div>
+                                Prioridad:
+                                <field name="prioridad"/>
+                            </div>
+
+                            <div>
+                                Estado:
+                                <field name="estado"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ACCION -->
     <record id="action_gestor_tarea" model="ir.actions.act_window">
         <field name="name">Tareas</field>
         <field name="res_model">gestor.tarea</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 
+    <!-- MENU PRINCIPAL -->
     <menuitem id="menu_gestor_tareas_root"
               name="Gestor de Tareas"/>
 
+    <!-- SUBMENU -->
     <menuitem id="menu_gestor_tareas"
               name="Tareas"
               parent="menu_gestor_tareas_root"
